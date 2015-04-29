@@ -1,0 +1,7 @@
+<h1>Edit post:</h1>
+
+<%= bootstrap_form_for @post do |f| %>
+<%= f.text_field :title, :placeholder => "Title" %>
+<%= f.text_field :link, :placeholder => "Link" %>
+<%= f.primary %>
+<% end %>

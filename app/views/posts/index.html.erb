@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h1 class="link-title">UGen.news</h1>
+
+    <div class="link-list">
+      <% @post.each do |p| %>
+        <h4><li class="posts"><%= link_to p.title, p.link %>  |  <%= p.user.email %></li></h4>
+        <br>
+        <div class="pull-right"><%= link_to 'Edit', edit_post_path(p.id) %>  |  <%= link_to 'Delete', post_path(p.id), :method => :delete %></div>
+        <hr>
+      <% end %>
+    </li>
+  </div>
+</div>
