@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   def index
     @post = Post.all
+    @vote = Vote.new
   end
 
   def new
@@ -31,6 +32,12 @@ class PostsController < ApplicationController
   def destroy
     @post = current_user.posts.destroy(params[:id])
     redirect_to posts_path
+  end
+
+  def show
+    @post = Post.find_by_id(params[:id])
+    @comment = Comment.new
+    @vote = Vote.new
   end
 
   private

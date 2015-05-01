@@ -12,8 +12,12 @@ Rails.application.routes.draw do
 
   get 'logout' => 'sessions#destroy'
 
-  resources :posts
-
+  resources :posts do
+    resources :votes, :only => [:create]
+    resources :comments, :only => [:create] do
+      resources :votes, :only => [:create]
+    end
+  end
 
   # resources :sessions, :only => [:new, :create, :destroy]
   # You can have the root of your site routed with "root"

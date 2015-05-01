@@ -2,13 +2,44 @@
   <div class="col-md-8 col-md-offset-2">
     <h1 class="link-title">UGen.news</h1>
 
-    <div class="link-list">
-      <% @post.each do |p| %>
-        <h4><li class="posts"><%= link_to p.title, p.link %>  |  <%= p.user.email %></li></h4>
-        <br>
-        <div class="pull-right"><%= link_to 'Edit', edit_post_path(p.id) %>  |  <%= link_to 'Delete', post_path(p.id), :method => :delete %></div>
-        <hr>
-      <% end %>
-    </li>
-  </div>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>Vote</th>
+          <th>Rating</th>
+          <th>Comments</th>
+          <th>Title</th>
+          <th>Member</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <% @post.each do |p| %>
+        <tr>
+          <td>
+            <%= bootstrap_form_for [p,@vote] do |f| %>
+            <%= f.hidden_field :value, value: "1" %>
+            <%= f.button "", class: "btn btn-primary btn-xs glyphicon glyphicon-chevron-up" %>
+            <% end %>
+            <%= bootstrap_form_for [p,@vote] do |f| %>
+            <%= f.hidden_field :value, value: "-1" %>
+            <%= f.button "", class: "btn btn-danger btn-xs glyphicon glyphicon-chevron-down" %>
+            <% end %>
+          </td>
+          <td>
+            <%= p.votes.reduce(0){|sum,v| sum.to_i+v.value.to_i} %>
+          </td>
+          <td>
+            <%= p.comments.length %>
+          </td>
+          <td>
+            <%= link_to p.title, p %>
+          </td>
+          <td>
+            <%= p.user.email %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 </div>
