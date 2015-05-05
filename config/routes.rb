@@ -15,9 +15,12 @@ Rails.application.routes.draw do
   resources :posts do
     resources :votes, :only => [:create]
     resources :comments, :only => [:create] do
+      resources :comments, :only => [:create]
       resources :votes, :only => [:create]
     end
   end
+
+  resources :passwords, except: [:index, :show]
 
   # resources :sessions, :only => [:new, :create, :destroy]
   # You can have the root of your site routed with "root"

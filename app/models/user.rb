@@ -19,4 +19,10 @@ class User < ActiveRecord::Base
     User.find_by_email(email).try(:authenticate, password)
   end
 
+  def set_password_reset
+    self.code = SecureRandom.urlsafe_base64
+    self.expires_at = 4.hours.from_now
+    self.save
+  end
+
 end

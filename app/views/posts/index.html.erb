@@ -27,7 +27,7 @@
             <% end %>
           </td>
           <td>
-            <%= p.votes.reduce(0){|sum,v| sum.to_i+v.value.to_i} %>
+            <div class="rating"><%= p.votes.reduce(0){|sum,v| sum.to_i+v.value.to_i} %></div>
           </td>
           <td>
             <%= p.comments.length %>

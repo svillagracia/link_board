@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1 class="text-center">Reset Password</h1>
+
+    <%= render "layouts/flash" %>
+
+    <%= bootstrap_form_for @user, url: password_path(@user.code) do |f| %>
+      <%= f.password_field :password, icon: "lock" %>
+      <%= f.submit "Update", :class => "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

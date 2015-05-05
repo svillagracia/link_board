@@ -5,30 +5,29 @@
       <thead>
         <tr>
           <th>Vote</th>
-          <th>Rating</th>
           <th>Title</th>
-          <th>Member</th>
+          <th><i class="glyphicon glyphicon-user"></i>  User</th>
         </tr>
       </thead>
       <tbody>
 
         <% @post.each do |p| %>
         <tr>
-          <td>
+          <td class="text-center">
             <%= bootstrap_form_for [p,@vote] do |f| %>
             <%= f.hidden_field :value, value: "1" %>
             <%= f.button "", class: "btn btn-primary btn-xs glyphicon glyphicon-chevron-up" %>
             <% end %>
+          <div class="rating"><%= p.votes.reduce(0){|sum,v| sum.to_i+v.value.to_i} %></div>
             <%= bootstrap_form_for [p,@vote] do |f| %>
             <%= f.hidden_field :value, value: "-1" %>
             <%= f.button "", class: "btn btn-danger btn-xs glyphicon glyphicon-chevron-down" %>
             <% end %>
           </td>
           <td>
-            <%= p.votes.reduce(0){|sum,v| sum.to_i+v.value.to_i} %>
-          </td>
-          <td>
-            <%= link_to p.title, p %>
+            <div><%= link_to p.title, p.link %></div>
+            <br>
+            <div class="comment-count pull-right"><%= link_to " #{p.comments.length}", p, :class => "btn btn-success btn-xs glyphicon glyphicon-comment" %></div>
           </td>
           <td>
             <%= p.user.email %>
