@@ -16,12 +16,12 @@
           <td class="text-center">
             <%= bootstrap_form_for [@post, c, @vote] do |f| %>
             <%= f.hidden_field :value, value: "1" %>
-            <%= f.button "", class: "btn btn-primary btn-xs glyphicon glyphicon-chevron-up" %>
+            <%= f.button "", class: "btn btn-info btn-xs glyphicon glyphicon-thumbs-up" %>
             <% end %>
             <div class="rating"><%= c.votes.reduce(0){|sum,v| sum.to_i+v.value.to_i} %></div>
             <%= bootstrap_form_for [@post, c, @vote] do |f| %>
             <%= f.hidden_field :value, value: "-1" %>
-            <%= f.button "", class: "btn btn-danger btn-xs glyphicon glyphicon-chevron-down" %>
+            <%= f.button "", class: "btn btn-danger btn-xs glyphicon glyphicon-thumbs-down" %>
             <% end %>
           </td>
           <td><%= c.user.email %></td>
