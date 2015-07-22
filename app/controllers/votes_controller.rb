@@ -15,7 +15,7 @@ class VotesController < ApplicationController
       return render plain: "invalid input. Stop it!"
     end
 
-    my_vote = thing.votes.find_by_user_id(current_user.id)
+    my_vote = thing.votes.find_by_user_id(current_user)
 
     if my_vote.nil?
       current_user.ratings << thing.votes.create(vote_params)
